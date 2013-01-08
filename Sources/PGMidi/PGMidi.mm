@@ -145,7 +145,9 @@ void PGMIDIReadProc(const MIDIPacketList *pktlist, void *readProcRefCon, void *s
 
 - (void) sendBytes:(const UInt8*)bytes size:(UInt32)size
 {
+#if defined(DEBUG)
     NSLog(@"%s(%u bytes to core MIDI)", __func__, unsigned(size));
+#endif
     assert(size < 65536);
     Byte packetBuffer[size+100];
     MIDIPacketList *packetList = (MIDIPacketList*)packetBuffer;
@@ -384,7 +386,9 @@ void PGMIDINotifyProc(const MIDINotification *message, void *refCon)
 
 - (void) sendBytes:(const UInt8*)data size:(UInt32)size
 {
+#if defined(DEBUG)
     NSLog(@"%s(%u bytes to core MIDI)", __func__, unsigned(size));
+#endif
     assert(size < 65536);
     Byte packetBuffer[size+100];
     MIDIPacketList *packetList = (MIDIPacketList*)packetBuffer;
